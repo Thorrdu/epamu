@@ -127,6 +127,7 @@ Accès immédiat sans installation requise. Fonctionne sur tous les navigateurs 
 **Développeur**
 - 👨‍💻 Thierry Hansens
 - 📧 thierry.hansens@gmail.com
+- ☕ **Support** : [Ko-fi - thorrdu](https://ko-fi.com/thorrdu)
 - 📊 **Base de données** : 175 questions disponibles
 - ⚠️ **Avertissement** : Les bonnes réponses ne sont pas garanties - Vérifiez avec vos sources officielles
 - 🐛 N'hésitez pas à me contacter en cas d'erreur à corriger
