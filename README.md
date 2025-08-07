@@ -4,6 +4,14 @@
 
 Application web moderne interactive d'aide à l'étude pour les étudiants Secouriste-Ambulancier belge (EPAMU 112). Cette application permet aux étudiants de tester leurs connaissances avec un système de QCM complet basé sur la législation belge.
 
+## 🌐 Version En Ligne
+
+Une version gratuite de l'application est disponible en ligne à l'adresse suivante :
+
+**🔗 [https://thorr.ovh/epamu/](https://thorr.ovh/epamu/)**
+
+Accès immédiat sans installation requise. Fonctionne sur tous les navigateurs modernes et appareils.
+
 ## 🚀 Fonctionnalités
 
 ### 🎯 Système d'Examen
