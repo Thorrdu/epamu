@@ -1844,7 +1844,7 @@ const QUESTIONS_BANK = [
             "Empêcher que la victime ne voie ses plaies",
             "Contenir l'écoulement du sang"
         ],
-        correctAnswer: 4,
+        correctAnswer: 0,
         explanation: "Le pansement occlusif évite la contamination, empêche l'entrée d'air (pneumothorax) et contient les écoulements."
     },
     {
