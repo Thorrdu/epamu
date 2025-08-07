@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <!--
+    ====================================================
+    Application EPAMU 112 - Aide aux étudiants Secouriste-Ambulancier
+    Développée par : Thierry Hansens
+    Contact : thierry.hansens@gmail.com
+    Année : 2025
+    ====================================================
+    -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Thierry Hansens">
+    <meta name="contact" content="thierry.hansens@gmail.com">
+    <meta name="description" content="Application d'aide à l'étude EPAMU 112 pour les étudiants Secouriste-Ambulancier belge">
+    <meta name="keywords" content="EPAMU, 112, secouriste, ambulancier, belgique, formation, QCM">
+    <title>Examen EPAMU 112 - Formation Secouriste-Ambulancier</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- En-tête -->
+        <header class="header">
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fas fa-ambulance"></i>
+                    <h1>EPAMU 112</h1>
+                </div>
+                <div class="header-info">
+                    <span class="exam-type">Formation Secouriste-Ambulancier Belge</span>
+                    <div class="header-actions">
+                        <button class="contact-button" id="contactButton" title="Contact développeur">
+                            <i class="fas fa-envelope"></i>
+                        </button>
+                        <div class="timer" id="timer">
+                            <i class="fas fa-clock"></i>
+                            <span id="time-display">00:00</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Modal de contact -->
+        <div class="contact-modal hidden" id="contactModal">
+            <div class="modal-overlay" id="modalOverlay"></div>
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3><i class="fas fa-user-circle"></i> Contact Développeur</h3>
+                    <button class="modal-close" id="modalClose">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <i class="fas fa-user"></i>
+                            <span class="contact-label">Développeur :</span>
+                            <span class="contact-value">Thierry Hansens</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <span class="contact-label">Email :</span>
+                            <a href="mailto:thierry.hansens@gmail.com" class="contact-value email-link">
+                                thierry.hansens@gmail.com
+                            </a>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-calendar"></i>
+                            <span class="contact-label">Année :</span>
+                            <span class="contact-value">2025</span>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <p class="contact-note">
+                            <i class="fas fa-info-circle"></i>
+                            Application créée pour aider les étudiants EPAMU 112 - Secouriste-Ambulancier belge
+                        </p>
+                        <p class="contact-note">
+                            <i class="fas fa-database"></i>
+                            Base de données : 175 questions disponibles
+                        </p>
+                        <p class="contact-note">
+                            <i class="fas fa-exclamation-triangle"></i>
+                            Les bonnes réponses ne sont pas garanties - Vérifiez toujours avec vos sources officielles
+                        </p>
+                        <p class="contact-note">
+                            <i class="fas fa-bug"></i>
+                            N'hésitez pas à me contacter en cas d'erreur à corriger dans l'application
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Écran de démarrage -->
+        <div class="start-screen" id="startScreen">
+            <div class="start-content">
+                <div class="welcome-card">
+                    <div class="icon-container">
+                        <i class="fas fa-stethoscope"></i>
+                    </div>
+                    <h2>Bienvenue à l'examen EPAMU 112</h2>
+                    <p class="description">
+                        Testez vos connaissances en tant que Secouriste-Ambulancier selon la législation belge.
+                    </p>
+                    
+                    <div class="exam-info">
+                        <div class="info-item">
+                            <i class="fas fa-clipboard-list"></i>
+                            <span>20 questions</span>
+                        </div>
+                        <div class="info-item">
+                            <i class="fas fa-clock"></i>
+                            <span>Temps libre</span>
+                        </div>
+                        <div class="info-item">
+                            <i class="fas fa-chart-line"></i>
+                            <span>+1 point pour bonne réponse, -0.5 pour erreur</span>
+                        </div>
+                    </div>
+
+                    <div class="rules-section">
+                        <h3>Format des réponses</h3>
+                        <ul class="rules-list">
+                            <li>3 réponses standard (A, B, C)</li>
+                            <li>D. Aucune proposition n'est correcte</li>
+                            <li>E. Toutes les propositions sont correctes</li>
+                            <li>F. Il est impossible de répondre : la question est absurde</li>
+                            <li>G. Je ne sais pas (0 point)</li>
+                        </ul>
+                    </div>
+
+                    <button class="start-button" id="startButton">
+                        <i class="fas fa-play"></i>
+                        Commencer l'examen
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Interface d'examen -->
+        <div class="exam-screen hidden" id="examScreen">
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressFill"></div>
+                <span class="progress-text" id="progressText">Question 1 sur 20</span>
+            </div>
+
+            <div class="question-container">
+                <div class="question-card">
+                    <div class="question-header">
+                        <span class="question-number" id="questionNumber">Question 1</span>
+                        <div class="question-category" id="questionCategory">Réanimation</div>
+                    </div>
+                    
+                    <div class="question-text" id="questionText">
+                        <!-- La question sera insérée ici -->
+                    </div>
+
+                    <div class="answers-container" id="answersContainer">
+                        <!-- Les réponses seront insérées ici -->
+                    </div>
+
+                    <div class="question-actions">
+                        <button class="btn btn-secondary" id="prevButton" disabled>
+                            <i class="fas fa-arrow-left"></i>
+                            Précédent
+                        </button>
+                        <button class="btn btn-primary" id="nextButton" disabled>
+                            Suivant
+                            <i class="fas fa-arrow-right"></i>
+                        </button>
+                        <button class="btn btn-success hidden" id="finishButton">
+                            <i class="fas fa-check"></i>
+                            Terminer l'examen
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="question-navigation">
+                <h4>Navigation</h4>
+                <div class="question-grid" id="questionGrid">
+                    <!-- Les numéros de questions seront générés ici -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Écran de résultats -->
+        <div class="results-screen hidden" id="resultsScreen">
+            <div class="results-content">
+                <div class="results-header">
+                    <div class="score-circle" id="scoreCircle">
+                        <span class="score-value" id="scoreValue">0</span>
+                        <span class="score-max">/20</span>
+                    </div>
+                    <h2 id="resultTitle">Résultats de l'examen</h2>
+                    <p id="resultMessage" class="result-message"></p>
+                </div>
+
+                <div class="results-stats">
+                    <div class="stat-item">
+                        <i class="fas fa-check-circle text-success"></i>
+                        <span class="stat-value" id="correctAnswers">0</span>
+                        <span class="stat-label">Bonnes réponses</span>
+                    </div>
+                    <div class="stat-item">
+                        <i class="fas fa-times-circle text-error"></i>
+                        <span class="stat-value" id="wrongAnswers">0</span>
+                        <span class="stat-label">Erreurs</span>
+                    </div>
+                    <div class="stat-item">
+                        <i class="fas fa-percentage"></i>
+                        <span class="stat-value" id="percentage">0%</span>
+                        <span class="stat-label">Pourcentage</span>
+                    </div>
+                </div>
+
+                <div class="detailed-results" id="detailedResults">
+                    <h3>Analyse détaillée</h3>
+                    <div class="results-list" id="resultsList">
+                        <!-- Les résultats détaillés seront insérés ici -->
+                    </div>
+                </div>
+
+                <div class="results-actions">
+                    <button class="btn btn-primary" id="retryButton">
+                        <i class="fas fa-redo"></i>
+                        Recommencer
+                    </button>
+                    <button class="btn btn-secondary" id="reviewButton">
+                        <i class="fas fa-eye"></i>
+                        Revoir les réponses
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="questions.js"></script>
+    <script src="app.js"></script>
+</body>
+</html> 
